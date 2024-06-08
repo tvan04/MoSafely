@@ -1,42 +1,106 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* App.css */
+/* purple color: #5557db; */
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.header-left,
+.header-right {
+  display: flex;
+  align-items: center;
 }
 
 .logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+  height: 40px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.icon {
+  height: 24px;
+  margin-right: 10px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-size: 15px;
 }
 
-.card {
-  padding: 2em;
+button:active {
+  transform: scale(0.9);
 }
 
-.read-the-docs {
-  color: #888;
+main {
+  padding-left: 75px;
+  text-align: left;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+h1 {
+  width: 100%;
+  text-align: left;
+}
+
+.tabs {
+  width: 100%;
+  display: flex;
+  justify-content: left;
+}
+
+.tab-content {
+  width: 100%;
+  text-align: left;
+}
+
+.tabs button.active {
+  font-weight: bold;
+}
+
+.chat-container {
+  display: flex;
+  width: 100%;
+}
+
+.conversation-list {
+  width: 50%;
+  border-right: 1px solid #ccc;
+  padding: 10px;
+}
+
+.chat-interface {
+  width: 70%;
+  padding: 10px;
+}
+
+footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.footer-buttons {
+  display: flex;
+}
+
+.footer-button {
+  background-color: rgb(155, 155, 155);
+  color: rgb(47, 47, 47);
+  border: 1.5px solid rgb(47, 47, 47);
+  padding: 10px 20px;
+  margin: 0 10px;
+  border-radius: 5px;
+  cursor: pointer;
 }
