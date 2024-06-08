@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Message from './Message';
 
 const Conversation = ({ messages }) => {
@@ -16,17 +15,6 @@ const Conversation = ({ messages }) => {
             ))}
         </div>
     );
-};
-
-Conversation.propTypes = {
-    messages: PropTypes.arrayOf(
-        PropTypes.shape({
-            sender: PropTypes.string.isRequired,
-            content: PropTypes.string.isRequired,
-            type: PropTypes.oneOf(['send', 'receive']).isRequired,
-            flag: PropTypes.bool.isRequired,
-        })
-    ).isRequired,
-};
+}
 
 export default Conversation;
