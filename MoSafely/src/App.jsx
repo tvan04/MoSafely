@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import logo from "./assets/logo.png";
 import menu from "./assets/menu-2.svg";
 import user from "./assets/user-circle.svg";
+import risk1 from "./assets/risk1.png";
+import risk2 from "./assets/risk2.png";
+import risk3 from "./assets/risk3.png";
 import downarrow from "./assets/chevron-down.svg";
 import Conversation from "./components/Conversation";
 import ProgressBar from "./components/ProgressBar";
@@ -84,18 +87,21 @@ function App() {
             onClick={() => handleTabClick(1)}
           >
             Risk 1
+            <img src={risk1} className="tab" alt="menu" />
           </button>
           <button
             className={activeTab === 2 ? "active" : ""}
             onClick={() => handleTabClick(2)}
           >
             Risk 2
+            <img src={risk2} className="tab" alt="menu" />
           </button>
           <button
             className={activeTab === 3 ? "active" : ""}
             onClick={() => handleTabClick(3)}
           >
             Risk 3
+            <img src={risk3} className="tab" alt="menu" />
           </button>
         </div>
         <div className="chat-container">
@@ -108,10 +114,7 @@ function App() {
             </p>
             <ul>
               {conversations
-                .filter(
-                  (conversation) =>
-                    conversation.riskType === activeTab
-                )
+                .filter((conversation) => conversation.riskType === activeTab)
                 .map((conversation) => (
                   <li key={conversation.id}>
                     <div

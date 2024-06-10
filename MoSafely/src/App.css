@@ -4,7 +4,6 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #f5f5f5;
 }
 
 header {
@@ -13,7 +12,6 @@ header {
   align-items: center;
   padding: 10px 20px;
   background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .header-left,
@@ -52,30 +50,41 @@ main {
 }
 
 h1 {
-  width: 100%;
-  text-align: center;
+  width: 90%;
+  text-align: left;
 }
 
 .tabs {
-  width: 100%;
   display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
+  width: 90%;
+  position: relative;
 }
 
 .tabs button {
-  margin: 0 10px;
-  padding: 10px 20px;
-  border: 1px solid #5557db;
-  border-radius: 5px;
-  background-color: #fff;
-  color: #5557db;
+  margin: 0 10px 0 0;
+  padding: 5px 20px;
+  border: 1px solid #ccc;
+  border-bottom: none;
+  background-color: rgb(155, 155, 155);
+  color: #333; 
+  border-radius: 10px 10px 0 0; 
   cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.tabs button img.tab {
+  margin-left: 50px
 }
 
 .tabs button.active {
-  background-color: #5557db;
-  color: #fff;
+  background-color: #fff;
+  color: #000;
+  border-bottom: 2px solid #5557db;
+  font-weight: bold;
+}
+
+.tabs button:hover {
+  background-color: #e0e0e0;
 }
 
 .value-spacing {
@@ -86,8 +95,8 @@ h1 {
   display: flex;
   width: 90%;
   background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
+  border: 1px solid #adaeee;
+  border-radius: 0 10px 10px 0;
 }
 
 .conversation-list {
@@ -117,9 +126,13 @@ h1 {
   flex-direction: column;
   align-items: stretch;
   padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  border: 1px solid #5557db;
+  border-radius: 10px;
   background-color: #fff;
+}
+
+.conversation-item:active {
+  background-color: rgb(155, 155, 155);
 }
 
 .profile-and-buttons {
@@ -271,4 +284,5 @@ footer {
 
 .footer-button:hover {
   background-color: #4546b5;
+  color: white;
 }
