@@ -1,4 +1,5 @@
 /* purple color: #5557db; */
+/* red color: #febfc0 */
 
 body {
   margin: 0;
@@ -77,10 +78,13 @@ h1 {
   color: #fff;
 }
 
+.value-spacing {
+  margin-left: 50px;
+}
+
 .chat-container {
   display: flex;
-  width: 100%;
-  max-width: 1000px;
+  width: 90%;
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
@@ -110,49 +114,97 @@ h1 {
 
 .conversation-item {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: stretch;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #fff;
 }
 
+.profile-and-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.profile-info {
+  display: flex;
+  align-items: flex-start;
+}
+
 .profile-pic {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   margin-right: 10px;
 }
 
-.conversation-details {
-  flex-grow: 1;
+.profile-info h3 {
+  margin: 0;
+  font-size: 16px;
+  align-self: flex-start;
 }
 
 .risk-message {
+  flex-grow: 1;
   margin: 5px 0;
   padding: 5px 10px;
-  border: 2px solid #5557db;
+  border: 1px solid #5557db;
+  color: #5557db;
   border-radius: 10px;
   background-color: #f9f9f9;
   word-wrap: break-word;
 }
 
 .agree-disagree-buttons {
-  margin-left: 10px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
 }
 
-.agree-disagree-buttons button {
-  padding: 5px 10px;
-  margin-left: 5px;
-  border-radius: 5px;
-  background-color: #fff;
-  color: #5557db;
-  border: 1px solid #5557db;
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.agree-disagree-buttons button.active {
+.radio-label {
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+.radio-button {
+  display: none;
+}
+
+.radio-button-label {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #5557db;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.radio-button-label::before {
+  content: "";
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: transparent;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.radio-button:checked + .radio-button-label::before {
   background-color: #5557db;
-  color: #fff;
 }
 
 .chat-interface {
@@ -178,7 +230,7 @@ h1 {
 
 footer {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
   padding: 10px 20px;
   background-color: #fff;
@@ -186,19 +238,34 @@ footer {
   margin-top: 20px;
 }
 
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.footer-content p {
+  margin: 0;
+}
+
 .footer-buttons {
   display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin-top: 25px;
+  margin-right: 15%;
 }
 
 .footer-button {
-  background-color: #5557db;
-  color: #fff;
-  border: 1.5px solid #5557db;
-  padding: 10px 20px;
-  margin: 0 10px;
+  background-color: rgb(155, 155, 155);
+  color: rgb(47, 47, 47);
+  border: 1.5px solid rgb(47, 47, 47);
+  padding: 20px 25px;
+  margin-left: 10px;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 15px;
+  font-size: 20px;
   transition: background-color 0.3s ease;
 }
 

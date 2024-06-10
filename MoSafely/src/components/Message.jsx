@@ -10,12 +10,13 @@ const Message = ({ name, message, type, flag }) => {
     marginBottom: "10px",
   };
   const messageStyle = {
-        border: `2px solid ${flag ? 'red' : '#5557db'}`,
+        border: `1px solid ${flag ? '#febfc0' : '#5557db'}`,
         borderRadius: '10px',
         padding: '10px',
         maxWidth: '60%',
         wordWrap: 'break-word',
-        backgroundColor: flag ? 'white' : '#f9f9f9'
+        color: '#5557db',
+        backgroundColor: flag ? '#febfc0' : '#f9f9f9'
     };
 
   return (

@@ -5,49 +5,16 @@ import user from "./assets/user-circle.svg";
 import downarrow from "./assets/chevron-down.svg";
 import Conversation from "./components/Conversation";
 import ProgressBar from "./components/ProgressBar";
+import conversationsData from "./data/conversations.json";
 import "./App.css";
 
 function App() {
-  const [activeTab, setActiveTab] = useState("tab1");
+  const [activeTab, setActiveTab] = useState(1);
   const [selectedConversation, setSelectedConversation] = useState(null);
   const [progressValue, setProgressValue] = useState(0);
+  const [messagesState, setMessagesState] = useState({});
 
-  const conversations = [
-    {
-      id: "conversation1",
-      name: "John",
-      profilePic: "https://via.placeholder.com/50",
-      riskMessage: "This is a risky message from John.",
-      messages: [
-        { sender: "John", content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit,", type: "receive", flag: false },
-        { sender: "Me", content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit,", type: "send", flag: true },
-        { sender: "John", content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit,", type: "receive", flag: false },
-      ],
-    },
-    {
-      id: "conversation2",
-      name: "Alice",
-      profilePic: "https://via.placeholder.com/50",
-      riskMessage: "This is a risky message from Alice.",
-      messages: [
-        { sender: "Alice", content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit,", type: "receive", flag: false },
-        { sender: "Me", content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit,", type: "send", flag: false },
-        { sender: "Alice", content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit,", type: "receive", flag: true },
-      ],
-    },
-    {
-      id: "conversation3",
-      name: "Bob",
-      profilePic: "https://via.placeholder.com/50",
-      riskMessage: "This is a risky message from Bob.",
-      messages: [
-        { sender: "Bob", content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit,", type: "receive", flag: false },
-        { sender: "Me", content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit,", type: "send", flag: false },
-        { sender: "Bob", content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit,", type: "receive", flag: true },
-      ],
-    },
-  ];
-
+  const conversations = conversationsData;
   const totalConversations = conversations.length;
 
   const handleTabClick = (tab) => {
@@ -58,12 +25,34 @@ function App() {
     setSelectedConversation(conversation);
   };
 
-  const handleAgree = () => {
-    setProgressValue(progressValue + 1);
+  const handleAgree = (id) => {
+    if (!(id in messagesState)) {
+      setMessagesState((prevState) => ({
+        ...prevState,
+        [id]: true,
+      }));
+      setProgressValue((prevValue) => prevValue + 1);
+    } else {
+      setMessagesState((prevState) => ({
+        ...prevState,
+        [id]: true,
+      }));
+    }
   };
 
-  const handleDisagree = () => {
-    setProgressValue(progressValue + 1);
+  const handleDisagree = (id) => {
+    if (!(id in messagesState)) {
+      setMessagesState((prevState) => ({
+        ...prevState,
+        [id]: false,
+      }));
+      setProgressValue((prevValue) => prevValue + 1);
+    } else {
+      setMessagesState((prevState) => ({
+        ...prevState,
+        [id]: false,
+      }));
+    }
   };
 
   return (
@@ -77,7 +66,11 @@ function App() {
         </div>
         <div className="header-right">
           <button>
-            <img src={user} className="icon" alt="user" />
+            <img
+              src="https://via.placeholder.com/50"
+              className="profile-pic"
+              alt="user"
+            />
             <img src={downarrow} className="icon" alt="downarrow" />
           </button>
         </div>
@@ -87,51 +80,90 @@ function App() {
         <h1>Messages type</h1>
         <div className="tabs">
           <button
-            className={activeTab === "tab1" ? "active" : ""}
-            onClick={() => handleTabClick("tab1")}
+            className={activeTab === 1 ? "active" : ""}
+            onClick={() => handleTabClick(1)}
           >
             Risk 1
           </button>
           <button
-            className={activeTab === "tab2" ? "active" : ""}
-            onClick={() => handleTabClick("tab2")}
+            className={activeTab === 2 ? "active" : ""}
+            onClick={() => handleTabClick(2)}
           >
             Risk 2
           </button>
           <button
-            className={activeTab === "tab3" ? "active" : ""}
-            onClick={() => handleTabClick("tab3")}
+            className={activeTab === 3 ? "active" : ""}
+            onClick={() => handleTabClick(3)}
           >
             Risk 3
           </button>
         </div>
-        <div className="tab-content">
-          {activeTab === "tab1" && <p>This is Risk 1 content.</p>}
-          {activeTab === "tab2" && <p>This is Risk 2 content.</p>}
-          {activeTab === "tab3" && <p>This is Risk 3 content.</p>}
-        </div>
         <div className="chat-container">
           <div className="conversation-list">
-            <h2>Risky Messages Received</h2>
+            <p>
+              Risky Messages Received{" "}
+              <span className="value-spacing">
+                {progressValue} / {totalConversations}
+              </span>
+            </p>
             <ul>
-              {conversations.map((conversation) => (
-                <li key={conversation.id}>
-                  <div
-                    className="conversation-item"
-                    onClick={() => handleConversationClick(conversation)}
-                  >
-                    <img src={conversation.profilePic} alt="Profile" className="profile-pic" />
-                    <div className="conversation-details">
-                      <h3>{conversation.name}</h3>
+              {conversations
+                .filter(
+                  (conversation) =>
+                    conversation.riskType === activeTab
+                )
+                .map((conversation) => (
+                  <li key={conversation.id}>
+                    <div
+                      className="conversation-item"
+                      onClick={() => handleConversationClick(conversation)}
+                    >
+                      <div className="profile-and-buttons">
+                        <div className="profile-info">
+                          <img
+                            src={conversation.profilePic}
+                            alt="Profile"
+                            className="profile-pic"
+                          />
+                          <h3>{conversation.name}</h3>
+                        </div>
+                        <div className="agree-disagree-buttons">
+                          <div className="radio-group">
+                            <label className="radio-label">Agree</label>
+                            <input
+                              type="radio"
+                              id={`agree-${conversation.id}`}
+                              name={`response-${conversation.id}`}
+                              className="radio-button"
+                              checked={messagesState[conversation.id] === true}
+                              onChange={() => handleAgree(conversation.id)}
+                            />
+                            <label
+                              htmlFor={`agree-${conversation.id}`}
+                              className="radio-button-label"
+                            ></label>
+                          </div>
+                          <div className="radio-group">
+                            <label className="radio-label">Disagree</label>
+                            <input
+                              type="radio"
+                              id={`disagree-${conversation.id}`}
+                              name={`response-${conversation.id}`}
+                              className="radio-button"
+                              checked={messagesState[conversation.id] === false}
+                              onChange={() => handleDisagree(conversation.id)}
+                            />
+                            <label
+                              htmlFor={`disagree-${conversation.id}`}
+                              className="radio-button-label"
+                            ></label>
+                          </div>
+                        </div>
+                      </div>
                       <p className="risk-message">{conversation.riskMessage}</p>
                     </div>
-                    <div className="agree-disagree-buttons">
-                      <button onClick={handleAgree}>Agree</button>
-                      <button onClick={handleDisagree}>Disagree</button>
-                    </div>
-                  </div>
-                </li>
-              ))}
+                  </li>
+                ))}
             </ul>
           </div>
           <div className="chat-interface">
@@ -147,7 +179,12 @@ function App() {
       </main>
 
       <footer>
-        <ProgressBar value={progressValue} total={totalConversations} />
+        <div className="footer-content">
+          <p>
+            {progressValue} / {totalConversations} Complete
+          </p>
+          <ProgressBar value={progressValue} total={totalConversations} />
+        </div>
         <div className="footer-buttons">
           <button className="footer-button">Previous</button>
           <button className="footer-button">Next</button>
