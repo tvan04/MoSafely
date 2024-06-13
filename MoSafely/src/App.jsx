@@ -20,14 +20,17 @@ function App() {
   const conversations = conversationsData;
   const totalConversations = conversations.length;
 
+  //changes tab state
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
 
+  //changes conversation state
   const handleConversationClick = (conversation) => {
     setSelectedConversation(conversation);
   };
 
+  //handles agree button click
   const handleAgree = (id) => {
     if (!(id in messagesState)) {
       setMessagesState((prevState) => ({
@@ -43,6 +46,7 @@ function App() {
     }
   };
 
+  //handles disagree button click
   const handleDisagree = (id) => {
     if (!(id in messagesState)) {
       setMessagesState((prevState) => ({

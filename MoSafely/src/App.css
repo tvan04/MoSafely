@@ -78,6 +78,7 @@ h1 {
   background-color: #fff;
   border: 1px solid #adaeee;
   border-radius: 0 10px 10px 0;
+  height: 55vh;
 }
 .chat-header {
   display: flex;
@@ -90,7 +91,6 @@ h1 {
   border-right: 1px solid #ccc;
   padding: 0px 10px 10px 50px;
   overflow-y: auto;
-  max-height: 50vh;
 }
 .chat-messages {
   display: flex;
@@ -202,7 +202,6 @@ h1 {
   flex-direction: column;
   border: 1px solid #adaeee;
   border-radius: 10px;
-  height: 54vh;
   overflow-y: auto;
 }
 .conversation-header {
