@@ -11,7 +11,7 @@ Navigate to the code directory
 ```
 Start the page
 ```bash
-  npm run deploy
+  npm run dev
 ```
 Navigate to Localhost:
 ```bash
