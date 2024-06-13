@@ -13,6 +13,10 @@ Navigate to the code directory
 ```bash
   cd MoSafely
 ```
+Install Dependencies 
+```bash
+  npm install
+```
 Start the page
 ```bash
   npm run dev
