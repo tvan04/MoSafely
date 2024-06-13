@@ -105,69 +105,84 @@ function App() {
           </button>
         </div>
         <div className="chat-container">
-          <div className="conversation-list">
-            <p>
-              Risky Messages Received{" "}
-              <span className="value-spacing">
-                {progressValue} / {totalConversations}
-              </span>
-            </p>
-            <ul>
-              {conversations
-                .filter((conversation) => conversation.riskType === activeTab)
-                .map((conversation) => (
-                  <li key={conversation.id}>
-                    <div
-                      className="conversation-item"
-                      onClick={() => handleConversationClick(conversation)}
-                    >
-                      <div className="profile-and-buttons">
-                        <div className="profile-info">
-                          <img
-                            src={conversation.profilePic}
-                            alt="Profile"
-                            className="profile-pic"
-                          />
-                          <h3>{conversation.name}</h3>
-                        </div>
-                        <div className="agree-disagree-buttons">
-                          <div className="radio-group">
-                            <label className="radio-label">Agree</label>
-                            <input
-                              type="radio"
-                              id={`agree-${conversation.id}`}
-                              name={`response-${conversation.id}`}
-                              className="radio-button"
-                              checked={messagesState[conversation.id] === true}
-                              onChange={() => handleAgree(conversation.id)}
+          <div className="chat-messages">
+            <div className="chat-header">
+              <h3>
+                Risky Messages Received
+                <span className="color-values">
+                  {progressValue} / {totalConversations}{" "}
+                </span>{" "}
+                Messages
+              </h3>
+            </div>
+            <div className="conversation-list">
+              <ul>
+                {conversations
+                  .filter((conversation) => conversation.riskType === activeTab)
+                  .map((conversation) => (
+                    <li key={conversation.id}>
+                      <div
+                        className={`conversation-item ${
+                          selectedConversation === conversation
+                            ? "selected"
+                            : ""
+                        }`}
+                        onClick={() => handleConversationClick(conversation)}
+                      >
+                        <div className="profile-and-buttons">
+                          <div className="profile-info">
+                            <img
+                              src={conversation.profilePic}
+                              alt="Profile"
+                              className="profile-pic"
                             />
-                            <label
-                              htmlFor={`agree-${conversation.id}`}
-                              className="radio-button-label"
-                            ></label>
+                            <h3>{conversation.name}</h3>
                           </div>
-                          <div className="radio-group">
-                            <label className="radio-label">Disagree</label>
-                            <input
-                              type="radio"
-                              id={`disagree-${conversation.id}`}
-                              name={`response-${conversation.id}`}
-                              className="radio-button"
-                              checked={messagesState[conversation.id] === false}
-                              onChange={() => handleDisagree(conversation.id)}
-                            />
-                            <label
-                              htmlFor={`disagree-${conversation.id}`}
-                              className="radio-button-label"
-                            ></label>
+                          <div className="agree-disagree-buttons">
+                            <div className="radio-group">
+                              <label className="radio-label">Agree</label>
+                              <input
+                                type="radio"
+                                id={`agree-${conversation.id}`}
+                                name={`response-${conversation.id}`}
+                                className="radio-button"
+                                checked={
+                                  messagesState[conversation.id] === true
+                                }
+                                onChange={() => handleAgree(conversation.id)}
+                              />
+                              <label
+                                htmlFor={`agree-${conversation.id}`}
+                                className="radio-button-label"
+                              ></label>
+                            </div>
+                            <div className="radio-group">
+                              <label className="radio-label">Disagree</label>
+                              <input
+                                type="radio"
+                                id={`disagree-${conversation.id}`}
+                                name={`response-${conversation.id}`}
+                                className="radio-button"
+                                checked={
+                                  messagesState[conversation.id] === false
+                                }
+                                onChange={() => handleDisagree(conversation.id)}
+                              />
+                              <label
+                                htmlFor={`disagree-${conversation.id}`}
+                                className="radio-button-label"
+                              ></label>
+                            </div>
                           </div>
                         </div>
+                        <p className="risk-message">
+                          {conversation.riskMessage}
+                        </p>
                       </div>
-                      <p className="risk-message">{conversation.riskMessage}</p>
-                    </div>
-                  </li>
-                ))}
-            </ul>
+                    </li>
+                  ))}
+              </ul>
+            </div>
           </div>
           <div className="chat-interface">
             {selectedConversation ? (
