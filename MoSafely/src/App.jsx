@@ -73,11 +73,7 @@ function App() {
         </div>
         <div className="header-right">
           <button>
-            <img
-              src="https://via.placeholder.com/50"
-              className="profile-pic"
-              alt="user"
-            />
+            <img src={user} className="usericon" alt="icon" />
             <img src={downarrow} className="icon" alt="downarrow" />
           </button>
         </div>
@@ -136,7 +132,7 @@ function App() {
                         <div className="profile-and-buttons">
                           <div className="profile-info">
                             <img
-                              src={conversation.profilePic}
+                              src={user}
                               alt="Profile"
                               className="profile-pic"
                             />

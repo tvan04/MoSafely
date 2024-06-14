@@ -24,6 +24,11 @@ header {
   height: 24px;
   margin-right: 10px;
 }
+.usericon {
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
 button {
   background: none;
   border: none;
@@ -203,6 +208,7 @@ h1 {
   border: 1px solid #adaeee;
   border-radius: 10px;
   overflow-y: auto;
+  width: 70%;
 }
 .conversation-header {
   padding: 10px 10px 40px 40px;
