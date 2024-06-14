@@ -75,7 +75,8 @@ h1 {
   background-color: #e0e0e0;
 }
 .color-values {
-  margin-left: 60px;
+  margin-left: 2em;
+
 }
 .chat-container {
   display: flex;
@@ -88,6 +89,7 @@ h1 {
 .chat-header {
   display: flex;
   justify-content: center;
+  font-size: 1em;
 }
 .chat-header .color-values {
   color: #5557db;
