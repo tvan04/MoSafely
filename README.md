@@ -2,6 +2,8 @@
 
 Demo made by Tristan Van
 
+## Demo
+![](https://github.com/tvan04/MoSafely/blob/main/demo.gif)
 
 ## Deployment
 
